@@ -1,0 +1,4 @@
+# file: C:\xampp\htdocs\testesocial\recommendation-engine\src\main.py
+# hypothesis_version: 6.151.6
+
+['*', '/api/v1', '/health', '1.0.0', '__main__', 'healthy', 'service', 'shutdown', 'src.main:app', 'startup', 'status', 'version']

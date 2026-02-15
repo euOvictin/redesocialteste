@@ -1,0 +1,4 @@
+# file: C:\xampp\htdocs\testesocial\recommendation-engine\src\config.py
+# hypothesis_version: 6.151.6
+
+[1.0, 2.0, 3.0, 300, 1000, 3600, 5432, 6379, 8005, '.env', '0.0.0.0', 'earliest', 'info', 'localhost', 'localhost:9092', 'postgres', 'redesocial']

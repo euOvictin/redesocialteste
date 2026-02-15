@@ -1,0 +1,4 @@
+# file: C:\xampp\htdocs\testesocial\recommendation-engine\src\routes.py
+# hypothesis_version: 6.151.6
+
+[100, 500, '/feed/{user_id}', '/score', '/trending', 'Pagination cursor', 'message', 'status', 'success']

@@ -1,0 +1,4 @@
+# file: C:\xampp\htdocs\testesocial\recommendation-engine\src\database.py
+# hypothesis_version: 6.151.6
+
+['database', 'host', 'password', 'port', 'user']

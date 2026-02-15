@@ -1,0 +1,38 @@
+# Prometheus configuration for Rede Social Brasileira
+# Requirement: 18.2 - Prometheus metrics collection
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+
+    scrape_configs:
+      - job_name: 'api-gateway'
+        static_configs:
+          - targets: ['api-gateway:3000']
+        metrics_path: /metrics
+
+      - job_name: 'user-service'
+        static_configs:
+          - targets: ['user-service:3001']
+        metrics_path: /actuator/prometheus
+
+      - job_name: 'content-service'
+        static_configs:
+          - targets: ['content-service:8080']
+        metrics_path: /actuator/prometheus
+
+      - job_name: 'messaging-service'
+        static_configs:
+          - targets: ['messaging-service:3002']
+        metrics_path: /metrics
+
+      - job_name: 'notification-service'
+        static_configs:
+          - targets: ['notification-service:8001']
+        metrics_path: /metrics

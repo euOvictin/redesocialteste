@@ -1,0 +1,108 @@
+spring:
+  application:
+    name: content-service
+  
+  # MongoDB Configuration
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/content_db}
+      auto-index-creation: true
+  
+  # PostgreSQL Configuration
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/content_metadata}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  
+  # Redis Configuration
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+  
+  # Kafka Configuration
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+    consumer:
+      group-id: content-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "*"
+  
+  # File Upload Configuration
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+
+# AWS S3 Configuration
+aws:
+  s3:
+    bucket-name: ${S3_BUCKET_NAME:rede-social-media}
+    region: ${AWS_REGION:us-east-1}
+    access-key: ${AWS_ACCESS_KEY:}
+    secret-key: ${AWS_SECRET_KEY:}
+    endpoint: ${S3_ENDPOINT:}  # For LocalStack or MinIO
+
+# Content Service Configuration
+content:
+  post:
+    max-text-length: 5000
+    min-text-length: 1
+  media:
+    image:
+      max-size-mb: 10
+      allowed-formats: jpeg,jpg,png,webp
+      thumbnail-width: 300
+      thumbnail-height: 300
+    video:
+      max-size-mb: 100
+      allowed-formats: mp4,webm
+      resolutions: 480p,720p,1080p
+  story:
+    expiration-hours: 24
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.redesocial: DEBUG
+    org.springframework.data.mongodb: DEBUG
+    org.springframework.kafka: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+server:
+  port: ${PORT:8082}

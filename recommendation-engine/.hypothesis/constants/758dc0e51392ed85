@@ -1,0 +1,4 @@
+# file: C:\xampp\htdocs\testesocial\recommendation-engine\src\services\recommendation_service.py
+# hypothesis_version: 6.151.6
+
+[0.0, 3600, '+00:00', 'Z', 'comments_count', 'created_at', 'feed:trending', 'follower_id', 'following_id', 'id', 'json', 'likes_count', 'post_id', 'posts', 'shares_count', 'user_id']

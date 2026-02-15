@@ -1,0 +1,30 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/content_db_test
+  
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+
+aws:
+  s3:
+    bucket-name: test-bucket
+    region: us-east-1
+    endpoint: http://localhost:4566  # LocalStack
+
+logging:
+  level:
+    root: WARN
+    com.redesocial: DEBUG

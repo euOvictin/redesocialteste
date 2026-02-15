@@ -1,0 +1,102 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'rede-social-brasileira'
+    environment: 'development'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Load rules once and periodically evaluate them
+rule_files:
+  # - "alerts/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # API Gateway metrics
+  - job_name: 'api-gateway'
+    static_configs:
+      - targets: ['api-gateway:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # User Service metrics
+  - job_name: 'user-service'
+    static_configs:
+      - targets: ['user-service:3001']
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 10s
+
+  # Content Service metrics
+  - job_name: 'content-service'
+    static_configs:
+      - targets: ['content-service:8080']
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 10s
+
+  # Messaging Service metrics
+  - job_name: 'messaging-service'
+    static_configs:
+      - targets: ['messaging-service:3002']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Notification Service metrics
+  - job_name: 'notification-service'
+    static_configs:
+      - targets: ['notification-service:8001']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Search Service metrics
+  - job_name: 'search-service'
+    static_configs:
+      - targets: ['search-service:8002']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Recommendation Engine metrics
+  - job_name: 'recommendation-engine'
+    static_configs:
+      - targets: ['recommendation-engine:8003']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # PostgreSQL exporter
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+    scrape_interval: 30s
+
+  # MongoDB exporter
+  - job_name: 'mongodb'
+    static_configs:
+      - targets: ['mongodb-exporter:9216']
+    scrape_interval: 30s
+
+  # Redis exporter
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+    scrape_interval: 30s
+
+  # Kafka exporter
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka-exporter:9308']
+    scrape_interval: 30s
+
+  # Elasticsearch exporter
+  - job_name: 'elasticsearch'
+    static_configs:
+      - targets: ['elasticsearch-exporter:9114']
+    scrape_interval: 30s
