@@ -1,3 +1,4 @@
+BACKEND
 # Rede Social Brasileira
 
 Uma plataforma moderna de mídia social que combina características do Instagram e Twitter, construída com arquitetura de microsserviços para garantir escalabilidade, manutenibilidade e alta disponibilidade.
@@ -267,3 +268,4 @@ Link do Projeto: [https://github.com/seu-usuario/rede-social-brasileira](https:/
 - [Socket.io](https://socket.io/)
 - [Apache Kafka](https://kafka.apache.org/)
 - [Elasticsearch](https://www.elastic.co/)
+
